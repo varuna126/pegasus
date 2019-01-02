@@ -1,7 +1,19 @@
-<h1> {{ action }} {{ inventarie.inventarie_nummer }} </h1>
+{% extends 'base_inventarier.html' %}
+{% block breadcrumbs %}
+	<li class="breadcrumb-item"><a href="{% url 'inventarier:list' %}">Inventarier</a></li>
+	<li class="breadcrumb-item"><a href="{% url 'inventarier:detail' inventarie_nummer=inventarie.inventarie_nummer %}">{{ inventarie.inventarie_nummer }}</a></li>
+	<li class="breadcrumb-item active" aria-current="page">{{ action }}</li>
+{% endblock %}
 
-<form method="POST">
-	{% csrf_token %}
-	{{ form.as_p }}
-<input type="submit" value="{{ action }}">
-</form>
+{% block content %}
+	<h1> {{ action }} {{ inventarie.inventarie_nummer }} </h1>
+
+
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+	<input type="submit" value="{{ action }}">
+	</form>
+{% endblock %}
+
+

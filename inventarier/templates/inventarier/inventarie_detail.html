@@ -1,16 +1,25 @@
-<h1> Inventarie Spec </h1>
+{% extends 'base_inventarier.html' %}
+	{% block title %}Inventarie {{ inventarie }} spec{% endblock %}
+	{% block breadcrumbs %}
+		<li class="breadcrumb-item"><a href="{% url 'inventarier:list' %}">Inventarier</a></li>
+		<li class="breadcrumb-item active" aria-current="page">{{ inventarie }}</li>
+	{% endblock %}
+	{% block content %}
+		
+		<h1> Inventarie Spec </h1>
 
-<h2> {{ inventarie }} </h2>
-<h2> {{ inventarie.produkt }} </h2>
-<h2> {{ inventarie.serienummer }} </h2>
-<h2> {{ inventarie.avdelning }} </h2>
-<h2> 
-	{% if inventarie.utlånad_till %}
-		Utlånad till {{ inventarie.utlånad_till }}
-	{% endif %} 
-</h2>
-<h2> {{ inventarie.rum }} </h2>
-<h2> {{ inventarie.inköpt }} </h2>
+		<h2> {{ inventarie }} </h2>
+		<h2> {{ inventarie.produkt }} </h2>
+		<h2> {{ inventarie.serienummer }} </h2>
+		<h2> {{ inventarie.avdelning }} </h2>
+		<h2> 
+			{% if inventarie.utlånad_till %}
+				Utlånad till {{ inventarie.utlånad_till }}
+			{% endif %} 
+		</h2>
+		<h2> {{ inventarie.rum }} </h2>
+		<h2> {{ inventarie.inköpt }} </h2>
 
-<a href="{% url 'inventarier:update' inventarie_nummer=inventarie.inventarie_nummer %}">Redigera</a>
-<a href="{% url 'inventarier:create_kommentar' inventarie_nummer=inventarie.inventarie_nummer %}">{{ action}}</a>
+		<a href="{% url 'inventarier:update' inventarie_nummer=inventarie.inventarie_nummer %}">Redigera</a>
+		<a href="{% url 'inventarier:create_kommentar' inventarie_nummer=inventarie.inventarie_nummer %}">{{ action}}</a>
+	{% endblock %}

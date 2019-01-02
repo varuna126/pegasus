@@ -1,13 +1,27 @@
-<h1>
-	{% if not form.instance.pk %}
-		Ny Inventarie
-	{% else %}
-		Redigera {{ form.instance.inventarie_nummer }}
-	{% endif %}
-</h1>
+{% extends 'base_inventarier.html' %}
 
-<form method="POST">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Spara">
-</form>
+{% block breadcrumbs %}
+	<li class="breadcrumb-item"><a href="{% url 'inventarier:list' %}">Inventarier</a></li>
+	{% if form.instance.pk %}
+		<li class="breadcrumb-item"><a href="{% url 'inventarier:detail' inventarie_nummer=form.instance.inventarie_nummer %}">{{ form.instance.inventarie_nummer }}</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Redigera</li>
+	{% else %}
+		<li class="breadcrumb-item active" aria-current="page">Ny inventarie</li>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+	<h1>
+		{% if not form.instance.pk %}
+			Ny Inventarie
+		{% else %}
+			Redigera {{ form.instance.inventarie_nummer }}
+		{% endif %}
+	</h1>
+
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Spara">
+	</form>
+{% endblock %}

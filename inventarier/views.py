@@ -29,11 +29,11 @@ class InventarieDetailView(DetailView):
 
 class InventarieCreate(CreateView):
 	model = Inventarie
-	fields = ['inventarie_nummer', 'serienummer', 'rum', 'inköpt', 'produkt']
+	fields = ['inventarie_nummer', 'serienummer', 'rum', 'inköpt', 'produkt', 'avdelning', 'utlånad_till']
 
 class InventarieUpdate(UpdateView):
 	model = Inventarie
-	fields = ['inventarie_nummer', 'serienummer', 'rum', 'inköpt', 'produkt']
+	fields = ['inventarie_nummer', 'serienummer', 'rum', 'inköpt', 'produkt', 'avdelning', 'utlånad_till']
 
 	def get_object(self):
 		return get_object_or_404(Inventarie, inventarie_nummer=self.kwargs['inventarie_nummer'])
