@@ -1,0 +1,11 @@
+<h1> Hej, Inventarie-Index </h1>
+
+<ul>
+	{% for inventarie in inventarie_list %}
+		<li>
+			<a href="{% url 'inventarier:detail' inventarie_nummer=inventarie.inventarie_nummer %}">{{ inventarie }}</a>
+		</li>
+	{% endfor %}
+</ul>
+
+<a href="{% url 'inventarier:create' %}">Skapa Ny inventarie</a>
